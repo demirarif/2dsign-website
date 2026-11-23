@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 188 36" role="img" aria-labelledby="title">
+  <title id="title">2DSIGN</title>
+  <g fill="#17181A">
+    <text x="0" y="27" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" letter-spacing="-2">2D</text>
+    <rect x="46" y="5" width="1" height="25"/>
+    <text x="58" y="27" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="400" letter-spacing="2">SIGN</text>
+  </g>
+</svg>

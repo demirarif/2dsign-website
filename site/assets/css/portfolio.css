@@ -18,15 +18,16 @@
 
 .project-index,
 .arabica-study {
-  padding-top: clamp(3.25rem, 7svh, 5rem)
+  padding-top: clamp(2.5rem, 5.2svh, 3.85rem)
 }
 
 .project-preview h2,
 .project-index h1,
 .arabica-study h1 {
-  font-size: clamp(2.4rem, 5.2vw, 5rem);
+  font-size: var(--fs-page-h1, clamp(2.05rem, 3.35vw, 3.5rem));
+  font-weight: var(--fw-heading, 500);
   line-height: 1.02;
-  letter-spacing: -.05em;
+  letter-spacing: -.045em;
   margin: 0 0 .42em;
   text-wrap: balance
 }
@@ -80,7 +81,8 @@
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: clamp(2rem, 3.3vw, 3.75rem);
+  font-size: var(--fs-h2, clamp(1.85rem, 3.1vw, 3.25rem));
+  font-weight: var(--fw-heading, 500);
   line-height: 1.02;
   letter-spacing: -.045em;
   color: #ffffff
@@ -178,14 +180,15 @@
 .blog-index {
   max-width: 85rem;
   margin-inline: auto;
-  padding: clamp(3.25rem, 7svh, 5rem) var(--m) var(--block)
+  padding: clamp(2.5rem, 5.2svh, 3.85rem) var(--m) var(--block)
 }
 
 .blog-index__head h1 {
-  font-size: clamp(3rem, 6vw, 6rem);
+  font-size: var(--fs-page-h1, clamp(2.05rem, 3.35vw, 3.5rem));
+  font-weight: var(--fw-heading, 500);
   line-height: 1;
   margin: 0 0 .45em;
-  letter-spacing: -.055em
+  letter-spacing: -.045em
 }
 
 .blog-index__list article {
@@ -254,7 +257,8 @@
 
 .journal-preview__head h2 {
   flex: 1;
-  font-size: clamp(2rem, 3.3vw, 3.75rem);
+  font-size: var(--fs-h2, clamp(1.85rem, 3.1vw, 3.25rem));
+  font-weight: var(--fw-heading, 500);
   line-height: 1.02;
   letter-spacing: -.045em;
   margin: 0

@@ -29,11 +29,13 @@
   /* bölüm üst/alt boşluğu */
 
   --fs-display: clamp(2.75rem, 8.5vw, 7.5rem);
-  --fs-h2: clamp(2rem, 5vw, 4rem);
-  --fs-h3: clamp(1.2rem, 2.2vw, 1.9rem);
+  --fs-page-h1: clamp(2.45rem, 4.5vw, 4.85rem);
+  --fs-h2: clamp(1.95rem, 3.3vw, 3.5rem);
+  --fs-h3: clamp(1.2rem, 2.1vw, 1.85rem);
   --fs-body: clamp(.95rem, 1.02vw, 1.0625rem);
   --fs-sm: .8125rem;
   --fs-mono: .75rem;
+  --fw-heading: 500;
 
   --ease: cubic-bezier(.22, .61, .36, 1);
 }
@@ -977,7 +979,9 @@ body.page .nav__cta {
 
 .collection__head h2 {
   flex: 1;
-  font-size: clamp(1.8rem, 3vw, 3rem);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-heading);
+  line-height: 1.02;
   letter-spacing: -.045em
 }
 
@@ -2161,8 +2165,9 @@ body.page .nav__cta {
 }
 
 .product-view__name {
-  font-size: clamp(2.15rem, 3.6vw, 3.85rem);
-  line-height: 1.02;
+  font-size: var(--fs-page-h1);
+  font-weight: var(--fw-heading);
+  line-height: 1.04;
   letter-spacing: -.045em
 }
 
@@ -2575,10 +2580,11 @@ body.page .nav__cta {
 }
 
 .article__title {
-  font-size: clamp(3rem, 8vw, 8rem);
-  line-height: .9;
-  letter-spacing: -.06em;
-  max-width: 11ch
+  font-size: clamp(2.15rem, 4.1vw, 4.1rem);
+  font-weight: var(--fw-heading);
+  line-height: 1.02;
+  letter-spacing: -.045em;
+  max-width: 14ch
 }
 
 .article__lead {
@@ -3441,7 +3447,7 @@ button[disabled] {
 .legal-hub {
   max-width: 56rem;
   margin: 0 auto;
-  padding: clamp(3.25rem, 7svh, 5rem) var(--m) var(--block)
+  padding: clamp(2.5rem, 5.2svh, 3.85rem) var(--m) var(--block)
 }
 
 .legal-hub__head {
@@ -3452,9 +3458,10 @@ button[disabled] {
 }
 
 .legal-hub__title {
-  font-size: clamp(2.35rem, 5.2vw, 4.65rem);
-  line-height: .98;
-  letter-spacing: -.05em
+  font-size: var(--fs-page-h1);
+  font-weight: var(--fw-heading);
+  line-height: 1.02;
+  letter-spacing: -.045em
 }
 
 .legal-hub__lead {

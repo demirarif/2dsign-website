@@ -1,10 +1,10 @@
 /* Inner page headings sit cleanly at the top while the studio mark lives in the bottom bar. */
 .entry-heading {
-  padding:clamp(3.25rem,7svh,5rem) var(--m) clamp(1.2rem,2vw,2rem);
+  padding:clamp(2.5rem,5.2svh,3.85rem) var(--m) clamp(1.1rem,1.8vw,1.65rem);
   display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
   background:var(--paper);color:var(--ink);border-bottom:1px solid var(--line);
 }
-.entry-heading h1{font-size:clamp(2.65rem,5.4vw,6rem);line-height:1;letter-spacing:-.055em}
+.entry-heading h1{font-size:var(--fs-page-h1, clamp(2.45rem,4.5vw,4.85rem));font-weight:var(--fw-heading, 500);line-height:1;letter-spacing:-.05em}
 .entry-heading p{font-size:1rem;color:var(--ink-2)}
 .entry-heading--dark{background:var(--dark);color:var(--paper);border:0}
 .entry-heading + .page-section,.entry-heading + .project-index{padding-top:clamp(1.6rem,3.6svh,2.75rem)}
@@ -33,7 +33,7 @@
   .entry-process .step:nth-child(even) .step__media{justify-self:end}
 }
 @media(max-width:760px){
-  .entry-heading{padding-top:2.5rem}
+  .entry-heading{padding:2.25rem var(--m) .9rem}
   .entry-heading p{font-size:.9rem}
   .entry-jobs{padding-inline:6vw}
   .entry-jobs .project-preview__link,.studio-desk{grid-template-columns:minmax(0,1fr)}

@@ -1,0 +1,666 @@
+/* =========================================================
+   2Dsign — Projeler Siyah Zemin + Yüksek Kontrastlı Antrasit 3B Küre
+   ========================================================= */
+/* Üst başlık + filtre şeridi + küre harita açılışta tam ekrana (100dvh) oturur */
+.projeler-stage {
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+  height: 100dvh;
+  min-height: 36rem;
+  max-height: 70rem;
+  background: var(--dark)
+}
+
+/* Projeler başlık bandı, Stüdyo/Süreçler/Koleksiyon/İletişim (.entry-heading) ile birebir aynı dikey yüksekliği korur */
+.map-header {
+  flex: none;
+  flex-wrap: wrap;
+  gap: .75rem 2rem;
+  background: var(--dark);
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, .12)
+}
+
+.map-header__stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .35rem 1.25rem;
+  font-family: var(--mono);
+  font-size: .75rem;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .64)
+}
+
+.map-header__stats strong {
+  color: #ffffff;
+  font-weight: 500
+}
+
+/* Üst kontrol şeridi — ferah bölge kısayolları + anlık arama (harita alanından kısılarak ekrana tam oturur) */
+.map-toolbar {
+  flex: none;
+  background: var(--dark);
+  color: #ffffff;
+  padding: .85rem var(--m);
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .85rem 1.5rem
+}
+
+.map-regions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .48rem
+}
+
+.map-region-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  min-height: 2.5rem;
+  padding: 0 1.02rem;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, .2);
+  background: transparent;
+  color: rgba(255, 255, 255, .82);
+  font-family: var(--mono);
+  font-size: .73rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background .22s var(--ease), color .22s var(--ease), border-color .22s var(--ease)
+}
+
+.map-region-btn span {
+  opacity: .56;
+  font-variant-numeric: tabular-nums
+}
+
+.map-region-btn:hover {
+  border-color: rgba(255, 255, 255, .6);
+  color: #ffffff
+}
+
+.map-region-btn[aria-pressed="true"] {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #141414
+}
+
+.map-region-btn[aria-pressed="true"] span {
+  opacity: .68
+}
+
+.map-search {
+  position: relative;
+  flex: 0 1 20.5rem;
+  min-width: 15rem
+}
+
+.map-search__input {
+  width: 100%;
+  min-height: 2.5rem;
+  padding: .45rem 2.2rem .45rem .15rem;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, .24);
+  background: transparent;
+  color: #ffffff;
+  font-family: var(--sans);
+  font-size: .92rem;
+  outline: 0;
+  transition: border-color .22s var(--ease)
+}
+
+.map-search__input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none
+}
+
+.map-search__input::placeholder {
+  color: rgba(255, 255, 255, .44)
+}
+
+.map-search__input:focus {
+  border-bottom-color: #ffffff
+}
+
+.map-search__icon {
+  position: absolute;
+  right: .25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 15px;
+  height: 15px;
+  color: rgba(255, 255, 255, .54);
+  pointer-events: none
+}
+
+.map-search__icon[hidden] {
+  display: none
+}
+
+.map-search__clear {
+  position: absolute;
+  right: -.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.25rem;
+  height: 2.25rem;
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, .74);
+  padding: 0
+}
+
+.map-search__clear[hidden] {
+  display: none
+}
+
+.map-search__clear:hover {
+  color: #ffffff
+}
+
+.map-search__results {
+  position: absolute;
+  top: calc(100% + .45rem);
+  left: 0;
+  right: 0;
+  z-index: 40;
+  max-height: 18rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: rgba(20, 20, 20, .96);
+  -webkit-backdrop-filter: blur(16px) saturate(0%);
+  backdrop-filter: blur(16px) saturate(0%);
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: .85rem;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, .52);
+  padding: .35rem
+}
+
+.map-search__results[hidden] {
+  display: none
+}
+
+.map-search__item {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .75rem;
+  padding: .6rem .75rem;
+  border-radius: .55rem;
+  text-align: left;
+  color: #ffffff;
+  font-size: .88rem;
+  transition: background .16s var(--ease)
+}
+
+.map-search__item:hover,
+.map-search__item:focus-visible {
+  background: rgba(255, 255, 255, .1)
+}
+
+.map-search__item small {
+  font-size: .75rem;
+  color: rgba(255, 255, 255, .56);
+  white-space: nowrap
+}
+
+.map-search__empty {
+  padding: .75rem;
+  font-size: .84rem;
+  color: rgba(255, 255, 255, .56)
+}
+
+/* Harita sahnesi — yüksek kontrastlı antrasit 3B küre, kalan tüm ekran yüksekliğini tam doldurur */
+.project-atlas {
+  flex: 1 1 auto;
+  min-height: 0;
+  position: relative;
+  background: #1a1b1d;
+  color: #ffffff;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, .1)
+}
+
+.project-atlas__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%
+}
+
+/* MapLibre varsayılan attribution inceltmesi */
+.project-atlas .maplibregl-ctrl-attrib {
+  background: rgba(18, 19, 21, .76);
+  color: rgba(255, 255, 255, .52);
+  font-family: var(--sans);
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  margin: 0 .65rem .65rem 0
+}
+
+.project-atlas .maplibregl-ctrl-attrib a {
+  color: rgba(255, 255, 255, .66)
+}
+
+/* Özel monokrom zoom + sıfırla kontrolleri */
+.map-controls {
+  position: absolute;
+  top: 1.15rem;
+  right: var(--m);
+  z-index: 15;
+  display: grid;
+  gap: .35rem
+}
+
+.map-ctrl-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  background: rgba(18, 19, 21, .86);
+  -webkit-backdrop-filter: blur(12px) saturate(0%);
+  backdrop-filter: blur(12px) saturate(0%);
+  border: 1px solid rgba(255, 255, 255, .22);
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .28);
+  transition: background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease)
+}
+
+.map-ctrl-btn svg {
+  display: block;
+  width: 15px;
+  height: 15px
+}
+
+.map-ctrl-btn:hover {
+  background: #ffffff;
+  color: #141414;
+  border-color: #ffffff
+}
+
+/* Koordinat / ölçek mikro etiketi */
+.map-coords {
+  position: absolute;
+  left: var(--m);
+  bottom: 1.15rem;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  padding: .35rem .75rem;
+  border-radius: 100px;
+  background: rgba(18, 19, 21, .82);
+  -webkit-backdrop-filter: blur(10px) saturate(0%);
+  backdrop-filter: blur(10px) saturate(0%);
+  border: 1px solid rgba(255, 255, 255, .16);
+  font-family: var(--mono);
+  font-size: .6875rem;
+  letter-spacing: .08em;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, .74);
+  pointer-events: none
+}
+
+.map-coords__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ed1c24;
+  flex: none
+}
+
+/* Şube detay pop-up kartı — harita üstünde mimari yüzen kart */
+.map-card {
+  position: absolute;
+  top: 1.05rem;
+  left: var(--m);
+  z-index: 25;
+  width: min(23.75rem, calc(100% - 2*var(--m) - 3.5rem));
+  max-height: calc(100% - 2.1rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-radius: 1.05rem;
+  background: rgba(18, 19, 21, .95);
+  -webkit-backdrop-filter: blur(18px) saturate(0%);
+  backdrop-filter: blur(18px) saturate(0%);
+  border: 1px solid rgba(255, 255, 255, .18);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, .54);
+  color: #ffffff;
+  opacity: 0;
+  transform: translateY(10px) scale(.985);
+  pointer-events: none;
+  transition: opacity .26s var(--ease), transform .26s var(--ease)
+}
+
+.map-card.is-open {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto
+}
+
+.map-card[hidden] {
+  display: none
+}
+
+.map-card__media {
+  position: relative;
+  width: 100%;
+  height: 11.25rem;
+  background: #25272b;
+  overflow: hidden
+}
+
+.map-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(.86) contrast(1.02)
+}
+
+.map-card__close {
+  position: absolute;
+  top: .65rem;
+  right: .65rem;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  background: rgba(16, 17, 19, .76);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, .26);
+  color: #ffffff;
+  transition: background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease)
+}
+
+.map-card__close svg {
+  display: block;
+  width: 14px;
+  height: 14px
+}
+
+.map-card__close:hover {
+  background: #ffffff;
+  color: #141414;
+  border-color: #ffffff
+}
+
+.map-card__body {
+  padding: .95rem 1.15rem 1.05rem;
+  display: grid;
+  gap: .45rem
+}
+
+.map-card__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  font-family: var(--sans);
+  font-size: .78rem;
+  font-weight: 500;
+  letter-spacing: .01em;
+  text-transform: none;
+  color: rgba(255, 255, 255, .68)
+}
+
+.map-card__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ed1c24;
+  flex: none
+}
+
+.map-card__title {
+  font-size: clamp(1.22rem, 1.85vw, 1.48rem);
+  font-weight: 500;
+  letter-spacing: -.03em;
+  line-height: 1.14;
+  color: #ffffff
+}
+
+.map-card__addr {
+  font-size: .84rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, .74)
+}
+
+.map-card__actions {
+  display: flex;
+  align-items: center;
+  margin-top: .2rem;
+  padding-top: .7rem;
+  border-top: 1px solid rgba(255, 255, 255, .14)
+}
+
+.map-card__maps {
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  min-height: 2.15rem;
+  padding: 0 1.05rem;
+  border-radius: 100px;
+  background: #ffffff;
+  color: #141414;
+  font-family: var(--mono);
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .075em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: opacity .2s var(--ease)
+}
+
+.map-card__maps:hover {
+  opacity: .86
+}
+
+/* Harita yüklenemezse / çevrimdışı yedek durum */
+.map-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  text-align: center;
+  color: rgba(255, 255, 255, .72);
+  background: #1a1b1d
+}
+
+.map-fallback[hidden] {
+  display: none
+}
+
+/* Harita altındaki editoryal seçili çalışmalar bölümü */
+.projects-showcase {
+  background: var(--paper);
+  color: var(--ink);
+  padding: clamp(3.5rem, 8svh, 6rem) var(--m) clamp(4rem, 9svh, 6.5rem)
+}
+
+.projects-showcase__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .75rem 2rem;
+  padding-bottom: 1.1rem;
+  margin-bottom: clamp(1.8rem, 3.6vw, 3rem);
+  border-bottom: 1px solid var(--line)
+}
+
+.projects-showcase__head h2 {
+  font-size: var(--fs-h2, clamp(1.85rem, 3.1vw, 3.25rem));
+  font-weight: var(--fw-heading, 500);
+  letter-spacing: -.045em
+}
+
+.projects-showcase__head p {
+  font-size: .95rem;
+  color: var(--ink-2)
+}
+
+.projects-showcase .project-preview__link {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) min(58vw, 62rem, 78svh);
+  align-items: start;
+  gap: var(--m)
+}
+
+.projects-showcase__meta {
+  display: grid;
+  gap: .75rem;
+  align-content: start
+}
+
+.projects-showcase__meta .project-preview__name {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.3vw, 2.15rem);
+  line-height: 1.12
+}
+
+.projects-showcase__meta p {
+  color: var(--ink-2);
+  max-width: 34ch;
+  line-height: 1.58
+}
+
+.projects-showcase__meta .link {
+  justify-self: start;
+  margin-top: .35rem
+}
+
+@media (max-width:760px) {
+  .projeler-stage {
+    height: 100svh;
+    height: 100dvh;
+    min-height: 36rem;
+    max-height: none;
+  }
+
+  .map-header {
+    gap: .45rem 1.25rem;
+  }
+
+  .map-toolbar {
+    padding: .75rem var(--m);
+    gap: .65rem
+  }
+
+  .map-search {
+    flex: 1 1 100%;
+    min-width: 0
+  }
+
+  .map-search__input {
+    min-height: 44px;
+    font-size: 1rem;
+    padding-right: 2.75rem
+  }
+
+  .map-search__clear {
+    width: 44px;
+    height: 44px;
+    right: -.4rem
+  }
+
+  .map-region-btn {
+    min-height: 44px;
+    padding: 0 .82rem;
+    font-size: .7rem;
+  }
+
+  .project-atlas {
+    flex: 1 1 auto;
+    height: auto;
+    min-height: 20rem
+  }
+
+  .map-controls {
+    top: .85rem;
+    right: .85rem
+  }
+
+  .map-ctrl-btn {
+    width: 44px;
+    height: 44px
+  }
+
+  .map-coords {
+    display: none
+  }
+
+  .project-atlas .maplibregl-ctrl-bottom-right {
+    top: .65rem;
+    left: .65rem;
+    right: auto;
+    bottom: auto
+  }
+
+  .project-atlas .maplibregl-ctrl-attrib {
+    margin: 0
+  }
+
+  /* Mobilde kart sabit alt menü çubuğunun temiz biçimde üstünde açılır */
+  .map-card {
+    position: fixed;
+    top: auto;
+    left: .75rem;
+    right: .75rem;
+    bottom: calc(max(1rem, env(safe-area-inset-bottom)) + 4.35rem);
+    z-index: 115;
+    width: auto;
+    max-height: calc(100dvh - 7.5rem);
+    overflow-y: auto
+  }
+
+  .map-card__media {
+    width: 100%;
+    height: 9.25rem
+  }
+
+  .map-card__close {
+    width: 44px;
+    height: 44px
+  }
+
+  .map-card__body {
+    padding: .85rem 1rem .95rem;
+    gap: .4rem
+  }
+
+  .map-card__actions {
+    padding-top: .65rem
+  }
+
+  .map-card__maps {
+    width: auto;
+    min-height: 44px;
+    padding: 0 1.15rem;
+    font-size: .69rem;
+    letter-spacing: .07em
+  }
+
+  .projects-showcase .project-preview__link {
+    grid-template-columns: 1fr;
+    gap: 1.25rem
+  }
+}

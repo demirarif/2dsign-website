@@ -1,76 +1,259 @@
 <!doctype html>
 <html lang="tr">
+
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Projeler | 2Dsign Mimarlık</title>
-  <meta name="description" content="2Dsign Mimarlık seçili projeleri. Arabica Coffee House şubeleri için mimari, iç mekân, teras ve özel mobilya tasarımları.">
-  <meta name="theme-color" content="#141414"><link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=mono9">
-<link rel="stylesheet" href="assets/css/portfolio.css?v=mono9">
-<link rel="canonical" href="https://2dsignmimarlik.com/projeler.html"><meta property="og:type" content="website"><meta property="og:site_name" content="2Dsign Mimarlık ve Tasarım"><meta property="og:locale" content="tr_TR"><meta property="og:url" content="https://2dsignmimarlik.com/projeler.html"><meta property="og:title" content="Projeler | 2Dsign Mimarlık"><meta property="og:description" content="2Dsign Mimarlık seçili projeleri. Arabica Coffee House şubeleri için mimari, iç mekân, teras ve özel mobilya tasarımları."><meta property="og:image" content="https://2dsignmimarlik.com/img/arabica/bar-etudu-1440.webp"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="assets/css/inner-pages.css?v=entry4"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://2dsignmimarlik.com/projeler.html#webpage","url":"https://2dsignmimarlik.com/projeler.html","name":"Projeler | 2Dsign Mimarlık","inLanguage":"tr","publisher":{"@id":"https://2dsignmimarlik.com/#organization"}},{"@type":"ItemList","name":"Seçili projeler","itemListElement":[{"@type":"ListItem","position":1,"name":"Arabica Coffee House","url":"https://2dsignmimarlik.com/arabica-coffee-house.html"}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://2dsignmimarlik.com/"},{"@type":"ListItem","position":2,"name":"Projeler","item":"https://2dsignmimarlik.com/projeler.html"}]}]}</script></head>
+  <meta name="description"
+    content="2Dsign Mimarlık ve Tasarım seçili projeleri ve interaktif haritası: Türkiye, Irak, Kazakistan ve Ukrayna genelinde Arabica Coffee House ve Arabica Sweet House şubeleri.">
+  <meta name="theme-color" content="#141414">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.1/dist/maplibre-gl.js" as="script">
+  <link rel="preload" href="assets/data/map-style-anthracite.json?v=5" as="fetch" crossorigin>
+  <link rel="preload" href="assets/data/projects.json?v=6" as="fetch" crossorigin>
+  <link rel="preload" href="https://tiles.openfreemap.org/planet" as="fetch" crossorigin>
+  <link rel="preload" href="https://tiles.openfreemap.org/fonts/Noto%20Sans%20Bold/0-255.pbf" as="fetch" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..500&display=swap" media="print"
+    onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..500&display=swap">
+  </noscript>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.1/dist/maplibre-gl.css" media="print"
+    onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.1/dist/maplibre-gl.css">
+  </noscript>
+  <link rel="stylesheet" href="assets/css/style.css?v=mono11">
+  <link rel="stylesheet" href="assets/css/portfolio.css?v=mono11">
+  <link rel="stylesheet" href="assets/css/inner-pages.css?v=entry6">
+  <link rel="stylesheet" href="assets/css/projeler-map.css?v=9">
+  <link rel="canonical" href="https://2dsignmimarlik.com/projeler.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="2Dsign Mimarlık ve Tasarım">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:url" content="https://2dsignmimarlik.com/projeler.html">
+  <meta property="og:title" content="Projeler | 2Dsign Mimarlık">
+  <meta property="og:description"
+    content="2Dsign Mimarlık ve Tasarım seçili projeleri ve interaktif haritası: Türkiye, Irak, Kazakistan ve Ukrayna genelinde Arabica Coffee House ve Arabica Sweet House şubeleri.">
+  <meta property="og:image" content="https://2dsignmimarlik.com/img/arabica/bar-etudu-1440.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <script
+    type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://2dsignmimarlik.com/projeler.html#webpage","url":"https://2dsignmimarlik.com/projeler.html","name":"Projeler | 2Dsign Mimarlık","inLanguage":"tr","publisher":{"@id":"https://2dsignmimarlik.com/#organization"}},{"@type":"ItemList","name":"Seçili projeler","itemListElement":[{"@type":"ListItem","position":1,"name":"Arabica Coffee House","url":"https://2dsignmimarlik.com/arabica-coffee-house.html"}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://2dsignmimarlik.com/"},{"@type":"ListItem","position":2,"name":"Projeler","item":"https://2dsignmimarlik.com/projeler.html"}]}]}</script>
+</head>
+
 <body class="page">
-<a class="skip-link" href="#icerik">İçeriğe geç</a>
-<a class="brand" href="index.html" aria-label="2Dsign ana sayfa"><span class="brand__logos"><img class="brand__logo brand__logo--positive" src="assets/brand/2dsign-positive.png?v=2" alt="2Dsign"><img class="brand__logo brand__logo--negative" src="assets/brand/2dsign-negative.png" alt="" aria-hidden="true"></span></a>
-<nav class="nav" aria-label="Ana menü" data-nav-el>
-  <div class="nav__panel" id="nav-panel" inert>
-    <ul class="nav__list"><li><a href="index.html">Ana sayfa</a></li><li><a href="projeler.html" aria-current="page">Projeler</a></li><li><a href="surecler.html">Süreçler</a></li><li><a href="koleksiyon.html">Koleksiyon</a></li><li><a href="studyo.html">Stüdyo</a></li><li><a href="iletisim.html">İletişim</a></li></ul>
-    <div class="nav__meta"><p>Beytepe, Çankaya, Ankara</p><p><a href="tel:+905432242391">+90 543 224 23 91</a><br><a href="mailto:info@2dsignmimarlik.com">info@2dsignmimarlik.com</a></p></div>
-  </div>
-  <div class="nav__pill"><a class="nav__brand" href="index.html" aria-label="Ana sayfa"><span class="nav__logos"><img class="nav__logo nav__logo--positive" src="assets/brand/2dsign-positive.png?v=2" srcset="assets/brand/2dsign-positive-sm.png?v=2 260w, assets/brand/2dsign-positive.png?v=2 440w" sizes="99px" alt="2Dsign"><img class="nav__logo nav__logo--negative" src="assets/brand/2dsign-negative.png" srcset="assets/brand/2dsign-negative-sm.png 260w, assets/brand/2dsign-negative.png 440w" sizes="99px" alt="" aria-hidden="true"></span></a><button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-panel"><span class="nav__toggle-lines" aria-hidden="true"><i></i><i></i></span><span class="nav__toggle-text" data-label-open="Menü" data-label-close="Kapat">Menü</span></button><a class="nav__cta" href="iletisim.html">Projenizi konuşalım</a></div>
-</nav>
-<main id="icerik">
-  <header class="entry-heading entry-heading--dark" data-nav-theme="dark"><h1 id="projeler-baslik">Projeler</h1></header>
-  <section class="project-index entry-jobs" data-nav-theme="light" aria-label="Proje listesi">
-    <div class="project-index__entries">
-      <a class="project-preview__link" href="arabica-coffee-house.html" aria-labelledby="arabica-ad">
-        <h2 class="project-preview__name" id="arabica-ad">Arabica Coffee House</h2>
-        <img src="img/arabica/bar-etudu-1440.webp" srcset="img/arabica/bar-etudu-640.webp 640w, img/arabica/bar-etudu-960.webp 960w, img/arabica/bar-etudu-1440.webp 1440w" sizes="(max-width:760px) 88vw, min(59vw, 62rem, 88svh)" width="1440" height="960" alt="Ahşap kollu koltuklar ve yuvarlak masanın arkasında kahve barı" fetchpriority="high" decoding="async">
-      </a>
-    </div>
-  </section>
-  <footer class="contact" data-nav-theme="dark">
-    <div class="contact__top">
-      <h2 class="contact__cta">Yeni bir mekân<br>üzerine konuşalım.</h2>
-      <a class="contact__mail" href="mailto:info@2dsignmimarlik.com">info@2dsignmimarlik.com</a>
-    </div>
-    <div class="contact__grid">
-      <div>
-        <span class="kicker">Stüdyo</span>
-        <strong class="contact__studio-name">2Dsign Mimarlık ve Tasarım</strong>
-        <a class="contact__address" href="https://www.google.com/maps/place/2DS%C4%B0GN+M%C4%B0MARLIK/@39.8607206,32.7116773,17z/data=!4m6!3m5!1s0x14d339003ea7ffe9:0xd978af2b48158f2f!8m2!3d39.8607206!4d32.7116773!16s%2Fg%2F11yhtjklm9" target="_blank" rel="noopener">Kanuni Sultan Süleyman Blv. No:1C D:44<br>Beytepe, 06800 Çankaya / Ankara<span class="contact__address-hint" aria-hidden="true">↗</span></a>
-        <p class="contact__hours">Hafta içi 09.00–18.00</p>
-      </div>
-      <div>
-        <span class="kicker">İletişim</span>
-        <ul class="contact__list">
-          <li><a href="tel:+905432242391">+90 543 224 23 91</a></li>
-          <li><a href="https://wa.me/905432242391" target="_blank" rel="noopener">WhatsApp</a></li>
-          <li><a href="https://www.linkedin.com/company/2dsign-mimarl%C4%B1k" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="iletisim.html">İletişim formu</a></li>
-        </ul>
-      </div>
-      <div>
-        <span class="kicker">Sayfalar</span>
-        <ul class="contact__list">
-          <li><a href="projeler.html">Projeler</a></li>
-          <li><a href="surecler.html">Süreçler</a></li>
-          <li><a href="koleksiyon.html">Koleksiyon</a></li>
-          <li><a href="studyo.html">Stüdyo</a></li>
-          <li><a href="blog.html">Blog</a></li>
-        </ul>
+  <a class="skip-link" href="#icerik">İçeriğe geç</a>
+  <a class="brand" href="index.html" aria-label="2Dsign ana sayfa"><span class="brand__logos"><img
+        class="brand__logo brand__logo--positive" src="assets/brand/2dsign-positive.png?v=2" alt="2Dsign"><img
+        class="brand__logo brand__logo--negative" src="assets/brand/2dsign-negative.png" alt=""
+        aria-hidden="true"></span></a>
+  <nav class="nav" aria-label="Ana menü" data-nav-el>
+    <div class="nav__panel" id="nav-panel" inert>
+      <ul class="nav__list">
+        <li><a href="index.html">Ana sayfa</a></li>
+        <li><a href="projeler.html" aria-current="page">Projeler</a></li>
+        <li><a href="surecler.html">Süreçler</a></li>
+        <li><a href="koleksiyon.html">Koleksiyon</a></li>
+        <li><a href="studyo.html">Stüdyo</a></li>
+        <li><a href="iletisim.html">İletişim</a></li>
+      </ul>
+      <div class="nav__meta">
+        <p>Beytepe, Çankaya, Ankara</p>
+        <p><a href="tel:+905432242391">+90 543 224 23 91</a><br><a
+            href="mailto:info@2dsignmimarlik.com">info@2dsignmimarlik.com</a></p>
       </div>
     </div>
-    <div class="contact__legal">
-      <span class="contact__brand">© 2026 <strong>2Dsign Mimarlık ve Tasarım</strong> · Ankara</span>
-      <nav class="contact__legal-links" aria-label="Yasal bağlantılar">
-        <a href="kisisel-verilerin-korunmasi.html">Kişisel Verilerin Korunması</a>
-        <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
-        <button type="button" data-cookie-prefs>Çerez Ayarları</button>
-      </nav>
+    <div class="nav__pill">
+      <a class="nav__brand" href="index.html" aria-label="Ana sayfa"><span class="nav__logos"><img
+            class="nav__logo nav__logo--positive" src="assets/brand/2dsign-positive.png?v=2"
+            srcset="assets/brand/2dsign-positive-sm.png?v=2 260w, assets/brand/2dsign-positive.png?v=2 440w"
+            sizes="99px" alt="2Dsign"><img class="nav__logo nav__logo--negative" src="assets/brand/2dsign-negative.png"
+            srcset="assets/brand/2dsign-negative-sm.png 260w, assets/brand/2dsign-negative.png 440w" sizes="99px" alt=""
+            aria-hidden="true"></span></a>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-panel"><span
+          class="nav__toggle-lines" aria-hidden="true"><i></i><i></i></span><span class="nav__toggle-text"
+          data-label-open="Menü" data-label-close="Kapat">Menü</span></button>
+      <a class="nav__cta" href="iletisim.html">Projenizi konuşalım</a>
     </div>
-  </footer>
-</main>
-<script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script><script src="assets/js/main.js?v=mono4" defer></script><script src="assets/js/pages.js?v=20261123d" defer></script>
-</body></html>
+  </nav>
+
+  <main id="icerik">
+    <div class="projeler-stage" data-nav-theme="dark">
+    <header class="entry-heading entry-heading--dark map-header" data-nav-theme="dark">
+      <h1 id="projeler-baslik">Projeler</h1>
+      <div class="map-header__stats" data-map-stats>
+        <span><strong>211</strong> lokasyon</span>
+        <span><strong>4</strong> ülke</span>
+        <span><strong>44</strong> şehir</span>
+      </div>
+    </header>
+
+    <div class="map-toolbar" data-nav-theme="dark">
+      <div class="map-regions" role="group" aria-label="Bölge seçimi">
+        <button class="map-region-btn" type="button" data-map-region="all" aria-pressed="true">Tümü
+          <span>211</span></button>
+        <button class="map-region-btn" type="button" data-map-region="turkiye" aria-pressed="false">Türkiye
+          <span>203</span></button>
+        <button class="map-region-btn" type="button" data-map-region="ankara" aria-pressed="false">Ankara
+          <span>134</span></button>
+        <button class="map-region-btn" type="button" data-map-region="yurtdisi" aria-pressed="false">Yurt Dışı
+          <span>8</span></button>
+      </div>
+      <div class="map-search">
+        <label class="sr-only" for="proje-harita-ara">Şehir, ilçe veya şube ara</label>
+        <input class="map-search__input" id="proje-harita-ara" type="search" autocomplete="off"
+          placeholder="Şehir, ilçe veya şube ara…" data-map-search>
+        <svg class="map-search__icon" data-map-search-icon viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <circle cx="7" cy="7" r="4.8" stroke="currentColor" stroke-width="1.35" />
+          <path d="M10.8 10.8L14 14" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" />
+        </svg>
+        <button class="map-search__clear" type="button" data-map-search-clear hidden aria-label="Aramayı temizle">
+          <svg viewBox="0 0 14 14" width="12" height="12" fill="none" aria-hidden="true">
+            <path d="M2.5 2.5L11.5 11.5M11.5 2.5L2.5 11.5" stroke="currentColor" stroke-width="1.4"
+              stroke-linecap="square" />
+          </svg>
+        </button>
+        <div class="map-search__results" data-map-results data-lenis-prevent hidden role="listbox"
+          aria-label="Arama sonuçları"></div>
+      </div>
+    </div>
+
+    <section class="project-atlas" data-project-atlas data-nav-theme="dark" aria-label="İnteraktif proje haritası">
+      <div class="project-atlas__canvas" data-map-canvas data-lenis-prevent></div>
+
+      <div class="map-controls" role="group" aria-label="Harita kontrolleri">
+        <button class="map-ctrl-btn" type="button" data-map-zoom-in aria-label="Yakınlaştır">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 3V13M3 8H13" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" />
+          </svg>
+        </button>
+        <button class="map-ctrl-btn" type="button" data-map-zoom-out aria-label="Uzaklaştır">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8H13" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" />
+          </svg>
+        </button>
+        <button class="map-ctrl-btn" type="button" data-map-reset aria-label="Görünümü sıfırla">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="8" cy="8" r="4.2" stroke="currentColor" stroke-width="1.3" />
+            <path d="M8 1.5V3.5M8 12.5V14.5M1.5 8H3.5M12.5 8H14.5" stroke="currentColor" stroke-width="1.3"
+              stroke-linecap="square" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="map-coords" data-map-coords aria-hidden="true">
+        <span class="map-coords__dot"></span>
+        <span data-coords-text>39.9334° K · 32.8597° D</span>
+      </div>
+
+      <aside class="map-card" data-map-card data-lenis-prevent hidden role="dialog" aria-label="Proje lokasyon detayı">
+        <div class="map-card__media">
+          <img src="img/arabica/bar-etudu-640.webp" alt="" data-card-img loading="lazy" decoding="async">
+          <button class="map-card__close" type="button" data-card-close aria-label="Detayı kapat">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 3L13 13M13 3L3 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="square" />
+            </svg>
+          </button>
+        </div>
+        <div class="map-card__body">
+          <span class="map-card__eyebrow"><span class="map-card__dot" aria-hidden="true"></span><span
+              data-card-eyebrow>Arabica Coffee House</span></span>
+          <h2 class="map-card__title" data-card-title>Şube</h2>
+          <p class="map-card__addr" data-card-addr></p>
+          <div class="map-card__actions">
+            <a class="map-card__maps" href="#" target="_blank" rel="noopener" data-card-maps>Google Haritalar’da aç
+              <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </aside>
+
+      <div class="map-fallback" data-map-fallback hidden>
+        <p>İnteraktif harita şu anda yüklenemedi. Aşağıdaki proje dosyasından çalışmalarımızı inceleyebilirsiniz.</p>
+      </div>
+    </section>
+    </div>
+
+    <section class="projects-showcase" data-nav-theme="light" aria-labelledby="secili-calismalar-baslik">
+      <header class="projects-showcase__head">
+        <h2 id="secili-calismalar-baslik">Seçili çalışmalar</h2>
+        <p>Türkiye, Irak, Kazakistan ve Ukrayna genelindeki uygulamalar.</p>
+      </header>
+      <div class="project-index__entries">
+        <a class="project-preview__link" href="arabica-coffee-house.html" aria-labelledby="arabica-ad">
+          <div class="projects-showcase__meta">
+            <span class="kicker">Kafe &amp; İç Mekân · 4 Ülke</span>
+            <h3 class="project-preview__name" id="arabica-ad">Arabica Coffee House</h3>
+            <p>Şubeler için mimari, iç mekân, teras ve 2Dsign özel üretim mobilyalarıyla kurgulanan oturma alanları.</p>
+            <span class="link">Çalışmayı inceleyin</span>
+          </div>
+          <img src="img/arabica/bar-etudu-1440.webp"
+            srcset="img/arabica/bar-etudu-640.webp 640w, img/arabica/bar-etudu-960.webp 960w, img/arabica/bar-etudu-1440.webp 1440w"
+            sizes="(max-width:760px) 88vw, min(58vw, 62rem, 78svh)" width="1440" height="960"
+            alt="Ahşap kollu koltuklar ve yuvarlak masanın arkasında kahve barı" loading="lazy" decoding="async">
+        </a>
+      </div>
+    </section>
+
+    <footer class="contact" data-nav-theme="dark">
+      <div class="contact__top">
+        <h2 class="contact__cta">Yeni bir mekân<br>üzerine konuşalım.</h2>
+        <a class="contact__mail" href="mailto:info@2dsignmimarlik.com">info@2dsignmimarlik.com</a>
+      </div>
+      <div class="contact__grid">
+        <div>
+          <span class="kicker">Stüdyo</span>
+          <strong class="contact__studio-name">2Dsign Mimarlık ve Tasarım</strong>
+          <a class="contact__address"
+            href="https://www.google.com/maps/place/2DS%C4%B0GN+M%C4%B0MARLIK/@39.8607206,32.7116773,17z/data=!4m6!3m5!1s0x14d339003ea7ffe9:0xd978af2b48158f2f!8m2!3d39.8607206!4d32.7116773!16s%2Fg%2F11yhtjklm9"
+            target="_blank" rel="noopener">Kanuni Sultan Süleyman Blv. No:1C D:44<br>Beytepe, 06800 Çankaya /
+            Ankara<span class="contact__address-hint" aria-hidden="true">↗</span></a>
+          <p class="contact__hours">Hafta içi 09.00–18.00</p>
+        </div>
+        <div>
+          <span class="kicker">İletişim</span>
+          <ul class="contact__list">
+            <li><a href="tel:+905432242391">+90 543 224 23 91</a></li>
+            <li><a href="https://wa.me/905432242391" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="https://www.linkedin.com/company/2dsign-mimarl%C4%B1k" target="_blank"
+                rel="noopener">LinkedIn</a></li>
+            <li><a href="iletisim.html">İletişim formu</a></li>
+          </ul>
+        </div>
+        <div>
+          <span class="kicker">Sayfalar</span>
+          <ul class="contact__list">
+            <li><a href="projeler.html">Projeler</a></li>
+            <li><a href="surecler.html">Süreçler</a></li>
+            <li><a href="koleksiyon.html">Koleksiyon</a></li>
+            <li><a href="studyo.html">Stüdyo</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="contact__legal">
+        <span class="contact__brand">© 2026 <strong>2Dsign Mimarlık ve Tasarım</strong> · Ankara</span>
+        <nav class="contact__legal-links" aria-label="Yasal bağlantılar">
+          <a href="kisisel-verilerin-korunmasi.html">Kişisel Verilerin Korunması</a>
+          <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
+          <button type="button" data-cookie-prefs>Çerez Ayarları</button>
+        </nav>
+      </div>
+    </footer>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.1/dist/maplibre-gl.js" defer></script>
+  <script src="assets/js/projeler-map.js?v=22" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="assets/js/main.js?v=mono4" defer></script>
+  <script src="assets/js/pages.js?v=20261123d" defer></script>
+</body>
+
+</html>

@@ -1,12 +1,12 @@
 # 2Dsign Mimarlık
 
-> 2Dsign Mimarlık ve Tasarım, Elif Ülger Yalçın tarafından 2019 yılında Ankara’da kurulan mimarlık, iç mimarlık ve özel üretim mobilya stüdyosudur. Kafe, restoran, mağaza, ofis ve konut projelerinde ilk krokiden uygulama çizimlerine, özel mobilya üretiminden saha teslimine kadar tek ekipte çalışır.
+> 2Dsign Mimarlık ve Tasarım, Elif Ülger Yalçın tarafından 2014 yılında Ankara’da kurulan mimarlık, iç mimarlık ve özel üretim mobilya stüdyosudur. Kafe, restoran, mağaza, ofis ve konut projelerinde ilk krokiden uygulama çizimlerine, özel mobilya üretiminden saha teslimine kadar tek ekipte çalışır.
 
 ## Stüdyo bilgileri
 
 - **Ad:** 2Dsign Mimarlık ve Tasarım (2Dsign)
 - **Kurucu mimar:** Elif Ülger Yalçın
-- **Kuruluş yılı:** 2019
+- **Kuruluş yılı:** 2014
 - **Adres:** Kanuni Sultan Süleyman Blv. No:1C D:44, Beytepe, 06800 Çankaya / Ankara, Türkiye
 - **Hizmet bölgesi:** Türkiye ve yurt dışı uygulamaları (Irak, Kazakistan, Ukrayna)
 - **Çalışma saatleri:** Hafta içi 09.00–18.00
@@ -28,21 +28,21 @@
 
 ## Mobilya koleksiyonu (15 parça, talebe göre üretim)
 
-- [Kapitone Deri Berjer](https://2dsignmimarlik.com/urun.html?urun=kapitone-deri-berjer): Lounge koltuk · Kapitone deri, ceviz · İç mekân
-- [Masif Ahşap Kollu Koltuk](https://2dsignmimarlik.com/urun.html?urun=masif-ahsap-kollu-koltuk): Kollu koltuk · Deri, masif ahşap · İç mekân
-- [Kapitone Sırtlı Koltuk](https://2dsignmimarlik.com/urun.html?urun=kapitone-sirtli-koltuk): Lounge koltuk · Kapitone kumaş, meşe · İç mekân
-- [Ahşap Kollu Sandalye](https://2dsignmimarlik.com/urun.html?urun=ahsap-kollu-sandalye): Kollu sandalye · Kumaş, meşe · İç mekân
-- [Yuvarlak Sırtlı Sandalye](https://2dsignmimarlik.com/urun.html?urun=yuvarlak-sirtli-sandalye): Sandalye · Dokulu kumaş, meşe · İç mekân
-- [Pirinç Ayaklı Deri Sandalye](https://2dsignmimarlik.com/urun.html?urun=pirinc-ayakli-deri-sandalye): Sandalye · Deri, ceviz, pirinç · İç mekân
-- [Metal Kollu Berjer](https://2dsignmimarlik.com/urun.html?urun=metal-kollu-berjer): Lounge koltuk · Deri, metal, ahşap · İç mekân
-- [Çapraz Ahşap Koltuk](https://2dsignmimarlik.com/urun.html?urun=capraz-ahsap-koltuk): Lounge koltuk · Masif ahşap, kumaş · İç / yarı açık alan
-- [Örgü Kollu Koltuk](https://2dsignmimarlik.com/urun.html?urun=orgu-kollu-koltuk): Kollu sandalye · Örgü, metal, kumaş · İç / dış mekân
-- [Metal Bahçe Sandalyesi](https://2dsignmimarlik.com/urun.html?urun=metal-bahce-sandalyesi): Kollu sandalye · Boyalı metal, sling kumaş, ahşap · Dış mekân
-- [Kütük Yan Sehpa](https://2dsignmimarlik.com/urun.html?urun=kutuk-yan-sehpa): Yan sehpa · Doğal kenar ahşap, metal · İç mekân
-- [Yuvarlak Bistro Masa](https://2dsignmimarlik.com/urun.html?urun=yuvarlak-bistro-masa): Bistro masa · Masif ahşap, döküm metal · İç mekân
-- [Kare Bistro Masa](https://2dsignmimarlik.com/urun.html?urun=kare-bistro-masa): Bistro masa · Ahşap, döküm metal · İç / yarı açık alan
-- [Doğal Kenar Yemek Masası](https://2dsignmimarlik.com/urun.html?urun=dogal-kenar-yemek-masasi): Yemek masası · Doğal kenar ahşap, çelik · İç mekân
-- [Doğal Kenar Uzun Masa](https://2dsignmimarlik.com/urun.html?urun=dogal-kenar-uzun-masa): Uzun ortak masa · Doğal kenar ahşap, çelik · İç mekân
+- [Kapitone Deri Berjer](https://2dsignmimarlik.com/koleksiyon/kapitone-deri-berjer/): Berjer · Kapitone deri, ceviz · İç mekân
+- [Masif Ahşap Kollu Koltuk](https://2dsignmimarlik.com/koleksiyon/masif-ahsap-kollu-koltuk/): Kollu koltuk · Deri, masif ahşap · İç mekân
+- [Kapitone Sırtlı Koltuk](https://2dsignmimarlik.com/koleksiyon/kapitone-sirtli-koltuk/): Lounge koltuk · Kapitone kumaş, meşe · İç mekân
+- [Ahşap Kollu Sandalye](https://2dsignmimarlik.com/koleksiyon/ahsap-kollu-sandalye/): Kollu sandalye · Kumaş, meşe · İç mekân
+- [Yuvarlak Sırtlı Sandalye](https://2dsignmimarlik.com/koleksiyon/yuvarlak-sirtli-sandalye/): Sandalye · Dokulu kumaş, meşe · İç mekân
+- [Pirinç Ayaklı Deri Sandalye](https://2dsignmimarlik.com/koleksiyon/pirinc-ayakli-deri-sandalye/): Sandalye · Deri, ceviz, pirinç · İç mekân
+- [Metal Kollu Berjer](https://2dsignmimarlik.com/koleksiyon/metal-kollu-berjer/): Berjer · Deri, metal, ahşap · İç mekân
+- [Çapraz Ahşap Koltuk](https://2dsignmimarlik.com/koleksiyon/capraz-ahsap-koltuk/): Lounge koltuk · Masif ahşap, kumaş · İç / yarı açık alan
+- [Örgü Kollu Koltuk](https://2dsignmimarlik.com/koleksiyon/orgu-kollu-koltuk/): Kollu koltuk · Örgü, metal, kumaş · İç / dış mekân
+- [Metal Bahçe Sandalyesi](https://2dsignmimarlik.com/koleksiyon/metal-bahce-sandalyesi/): Kollu sandalye · Boyalı metal, sling kumaş, ahşap · Dış mekân
+- [Kütük Yan Sehpa](https://2dsignmimarlik.com/koleksiyon/kutuk-yan-sehpa/): Yan sehpa · Doğal kenar ahşap, metal · İç mekân
+- [Yuvarlak Bistro Masa](https://2dsignmimarlik.com/koleksiyon/yuvarlak-bistro-masa/): Bistro masa · Masif ahşap, döküm metal · İç mekân
+- [Kare Bistro Masa](https://2dsignmimarlik.com/koleksiyon/kare-bistro-masa/): Bistro masa · Ahşap, döküm metal · İç / yarı açık alan
+- [Doğal Kenar Yemek Masası](https://2dsignmimarlik.com/koleksiyon/dogal-kenar-yemek-masasi/): Yemek masası · Doğal kenar ahşap, çelik · İç mekân
+- [Doğal Kenar Uzun Masa](https://2dsignmimarlik.com/koleksiyon/dogal-kenar-uzun-masa/): Uzun ortak masa · Doğal kenar ahşap, çelik · İç mekân
 
 ## Stüdyo notları (Blog)
 

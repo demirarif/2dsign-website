@@ -385,7 +385,7 @@
             '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M2.5 2.5L13.5 13.5M13.5 2.5L2.5 13.5" stroke="currentColor" stroke-width="1.35" stroke-linecap="square"/></svg>' +
           '</button>' +
         '</div>' +
-        '<p class="cookie-modal__intro">Sitenin temel işlevleri için zorunlu çerezler kullanılır. İsteğe bağlı çerez tercihlerinizi buradan yönetebilir, ayrıntılar için <a href="kisisel-verilerin-korunmasi.html#cerezler">Çerez Politikası</a>’nı inceleyebilirsiniz.</p>' +
+        '<p class="cookie-modal__intro">Sitenin temel işlevleri için zorunlu çerezler kullanılır. İsteğe bağlı çerez tercihlerinizi buradan yönetebilir, ayrıntılar için <a href="/kisisel-verilerin-korunmasi.html#cerezler">Çerez Politikası</a>’nı inceleyebilirsiniz.</p>' +
         '<div class="cookie-cat">' +
           '<div class="cookie-cat__row"><strong>Zorunlu çerezler</strong><span class="cookie-cat__on">Her zaman açık</span></div>' +
           '<p>İnternet sitesinin düzgün çalışması ve tercihlerinizin cihazınızda saklanması için gereklidir.</p>' +

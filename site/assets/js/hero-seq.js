@@ -82,7 +82,7 @@
     const next = Math.round(Math.max(0, Math.min(1, -rect.top / distance)) * (frames - 1));
     direction = Math.sign(next - wanted) || direction;
     wanted = next;
-    const verse = String(next < 31 ? 0 : next < 63 ? 1 : 2);
+    const verse = next < 13 ? 'intro' : next < 40 ? '0' : next < 67 ? '1' : '2';
     if (section.dataset.verse !== verse) section.dataset.verse = verse;
     for (const i of cache.keys()) {
       if (!anchorSet.has(i) && Math.abs(i - wanted) > 12) cache.delete(i);

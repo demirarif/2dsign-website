@@ -1,0 +1,104 @@
+.arabica-case {
+  --case-photo: min(43vw, 34rem, 68svh);
+  padding: clamp(2.4rem, 6svh, 5rem) var(--m) clamp(4rem, 9svh, 7rem);
+}
+
+.arabica-case__opening {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--case-photo);
+  grid-template-areas: "title photo" "scope photo";
+  grid-template-rows: auto 1fr;
+  gap: clamp(1.6rem, 4svh, 3rem) clamp(2rem, 7vw, 7rem);
+  align-items: start;
+}
+
+.arabica-case__copy {
+  grid-area: scope;
+  max-width: 35rem;
+}
+
+.arabica-case__opening > figure { grid-area: photo; }
+
+.arabica-case .arabica-study__head {
+  grid-area: title;
+  margin: 0;
+}
+
+.arabica-case .arabica-study__head h1 {
+  max-width: 19ch;
+  margin-bottom: .45rem;
+}
+
+.arabica-case__role {
+  font-size: 1.125rem;
+  letter-spacing: -.02em;
+  margin-bottom: .8rem;
+}
+
+.arabica-case__scope {
+  margin: 0;
+}
+
+.arabica-case__scope div {
+  display: grid;
+  grid-template-columns: minmax(7.6rem, 1fr) minmax(0, 2fr);
+  gap: .4rem clamp(.75rem, 2vw, 1.5rem);
+  padding: .7rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.arabica-case__scope dt { font-weight: 500; }
+.arabica-case__scope dd { margin: 0; color: var(--ink-2); }
+.arabica-case__scope dt, .arabica-case__scope dd {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.arabica-case figure, .arabica-case figure + figure { margin: 0; }
+.arabica-case img { width: 100%; height: auto; }
+
+.arabica-case figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .15rem 1rem;
+  margin-top: .7rem;
+  font-size: .9rem;
+}
+
+.arabica-case figcaption strong { font-weight: 500; }
+.arabica-case figcaption span { color: var(--ink-2); }
+
+.arabica-case__branches { margin-top: clamp(3.75rem, 9svh, 7rem); }
+.arabica-case__branch-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .5rem 1rem;
+  border-top: 1px solid var(--line);
+  padding-top: .85rem;
+  margin-bottom: 1.4rem;
+}
+.arabica-case__branch-head h2 { font-size: clamp(1.65rem, 3.1vw, 2.85rem); }
+.arabica-case__branch-head a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: underline;
+  text-underline-offset: .24em;
+}
+.arabica-case__gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.35rem, 3.6vw, 3.5rem);
+  max-width: 71.5rem;
+  margin-inline: auto;
+}
+
+@media (max-width: 760px) {
+  .arabica-case__opening, .arabica-case__gallery { grid-template-columns: minmax(0, 1fr); }
+  .arabica-case__opening { grid-template-areas: "title" "photo" "scope"; grid-template-rows: auto; gap: 1.5rem; }
+  .arabica-case__scope div { grid-template-columns: minmax(0, 1fr); }
+  .arabica-case__branch-head { margin-bottom: .85rem; }
+}

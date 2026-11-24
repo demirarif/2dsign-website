@@ -56,52 +56,68 @@
   z-index: 3
 }
 
-/* The verse occupies the margin, leaving the centre of the panorama open. */
-.hero__verse {
+/* Title and verse use opposite margins; the moving image stays open in the centre. */
+.hero__intro {
   position: absolute;
   left: var(--m);
-  bottom: clamp(6.2rem, 13svh, 10rem);
+  right: var(--m);
+  bottom: clamp(6.75rem, 14svh, 9rem);
   z-index: 3;
   color: #fff;
-  pointer-events: none
+  pointer-events: none;
+  transition: opacity .2s var(--ease)
+}
+
+.hero__intro h1 {
+  max-width: 22ch;
+  font-size: clamp(2.3rem, min(4.65vw, 8svh), 4.85rem);
+  line-height: 1.02;
+  letter-spacing: -.05em;
+  text-wrap: balance
+}
+
+.hero__place {
+  margin: 0 0 .8rem;
+  font-size: .9375rem;
+  letter-spacing: .04em
+}
+
+.hero.is-seq:is([data-verse="0"], [data-verse="1"], [data-verse="2"]) .hero__intro {
+  opacity: 0
+}
+
+.hero__verse {
+  position: absolute;
+  top: clamp(5rem, 15svh, 9rem);
+  right: var(--m);
+  z-index: 3;
+  width: min(41vw, 22rem);
+  color: #fff;
+  pointer-events: none;
+  text-align: right
 }
 
 .hero__lines {
   display: grid;
-  gap: .25em;
-  font-size: clamp(1.1rem, 2vw, 2rem);
-  line-height: 1.13;
-  letter-spacing: -.04em
-}
-
-.hero:not(.is-seq) .hero__lines br {
-  display: none
-}
-
-.hero:not(.is-seq) .hero__lines span {
-  white-space: normal
-}
-
-.hero.is-seq .hero__lines {
-  font-size: clamp(2.65rem, min(5.4vw, 8.7svh), 5.5rem);
-  line-height: .99;
-  letter-spacing: -.055em
+  gap: .28em;
+  font-size: clamp(1rem, 1.6vw, 1.5rem);
+  line-height: 1.3;
+  letter-spacing: -.022em
 }
 
 .hero.is-seq .hero__lines span {
   grid-area: 1/1;
   opacity: 0;
   visibility: hidden;
-  transition: opacity .18s var(--ease), visibility 0s linear .18s
+  transition: opacity .1s var(--ease), visibility 0s linear .1s
 }
 
-.hero.is-seq:not([data-verse]) .hero__lines span:first-child,
 .hero.is-seq[data-verse="0"] .hero__lines span:nth-child(1),
 .hero.is-seq[data-verse="1"] .hero__lines span:nth-child(2),
 .hero.is-seq[data-verse="2"] .hero__lines span:nth-child(3) {
   opacity: 1;
   visibility: visible;
-  transition: opacity .26s var(--ease) .14s, visibility 0s linear .14s
+  transition: opacity .2s var(--ease) .09s, visibility 0s linear .09s
 }
 
 .hero__scrim::after {
@@ -111,7 +127,19 @@
   background: radial-gradient(ellipse 80% 89% at 0% 100%, rgba(0, 0, 0, .86) 0%, rgba(0, 0, 0, .55) 38%, transparent 77%)
 }
 
-@media (max-width:760px) {
+.hero__scrim::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 64% 68% at 100% 0%, rgba(0, 0, 0, .82), rgba(0, 0, 0, .54) 36%, transparent 78%);
+  transition: opacity .2s var(--ease)
+}
+
+.hero.is-seq:not(:is([data-verse="0"], [data-verse="1"], [data-verse="2"])) .hero__scrim::before {
+  opacity: 0
+}
+
+@media (max-width:760px), (hover:none) and (pointer:coarse) {
 
   /* mobilde dizi hiç yüklenmez; kural yine de savunma amaçlı burada */
   .hero[data-hero-seq].is-seq {
@@ -122,8 +150,28 @@
     position: relative
   }
 
-  .hero__canvas {
+  .hero__canvas,
+  .hero__verse,
+  .hero__scrim::before {
     display: none
+  }
+
+  .hero__intro {
+    bottom: max(6.75rem, calc(5.65rem + env(safe-area-inset-bottom)))
+  }
+
+  .hero__intro h1 {
+    max-width: 27ch;
+    font-size: clamp(1.9rem, min(7.4vw, 10svh), 3rem)
+  }
+
+  .hero__place {
+    margin-bottom: .65rem;
+    font-size: .875rem
+  }
+
+  .hero__scrim::after {
+    background: linear-gradient(to top, rgba(0, 0, 0, .9), rgba(0, 0, 0, .72) 26%, rgba(0, 0, 0, .10) 65%, transparent 74%)
   }
 }
 

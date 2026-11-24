@@ -189,6 +189,12 @@
   display: none
 }
 
+/* Keep the glass on still frames, not while a WebGL map is being redrawn. */
+.projeler-stage.is-map-moving :is(.map-search__results, .map-ctrl-btn, .map-coords, .map-card, .map-card__close) {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
 .map-search__item {
   width: 100%;
   display: flex;

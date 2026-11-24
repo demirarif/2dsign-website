@@ -8,6 +8,7 @@
   var root = document.querySelector('[data-project-atlas]');
   if (!root) return;
 
+  var stage = root.closest('.projeler-stage');
   var canvasEl = root.querySelector('[data-map-canvas]');
   var cardEl = root.querySelector('[data-map-card]');
   var cardImg = root.querySelector('[data-card-img]');
@@ -16,7 +17,7 @@
   var cardAddr = root.querySelector('[data-card-addr]');
   var cardMaps = root.querySelector('[data-card-maps]');
   var cardClose = root.querySelector('[data-card-close]');
-  var coordsEl = root.querySelector('[data-map-coords]');
+  var coordsText = root.querySelector('[data-coords-text]');
   var fallbackEl = root.querySelector('[data-map-fallback]');
   var statsEl = document.querySelector('[data-map-stats]');
   var regionBtns = Array.prototype.slice.call(document.querySelectorAll('[data-map-region]'));
@@ -54,6 +55,9 @@
   var map = null;
   var mapReady = false;
   var clampingCenter = false;
+  var lastCoordsUpdate = -Infinity;
+  var pinZoom = 12;
+  var singlePointLayers = ['unclustered-single-halo', 'unclustered-single-circle', 'unclustered-single-count', 'unclustered-point-logo', 'branch-hit-area'];
   var panLimits = { minLng: 17.0, maxLng: 82.5, minLat: 27.5, maxLat: 58.5 };
 
   // Şube sayısı ağırlık merkezi (%70 Türkiye yoğunluk ağırlığı + %30 coğrafi yayılım)
@@ -162,6 +166,21 @@
     var ns = lat >= 0 ? 'K' : 'G';
     var ew = lng >= 0 ? 'D' : 'B';
     return Math.abs(lat).toFixed(4) + '° ' + ns + ' · ' + Math.abs(lng).toFixed(4) + '° ' + ew;
+  }
+
+  function updateCoords(lat, lng) {
+    if (!coordsText) return;
+    var next = formatCoords(lat, lng);
+    if (coordsText.textContent !== next) coordsText.textContent = next;
+  }
+
+  function updateCenterCoords(force) {
+    if (!coordsText || selectedId) return;
+    var now = performance.now();
+    if (!force && now - lastCoordsUpdate < 120) return;
+    lastCoordsUpdate = now;
+    var c = map.getCenter();
+    updateCoords(c.lat, c.lng);
   }
 
   // Küresel eğriliği mimari çizim çizgileriyle belirginleştiren 15° enlem/boylam ızgarası
@@ -290,7 +309,7 @@
     if (!map || !mapReady || !map.getLayer('point-selected-pin')) return;
     var activeKey = selectedId || '__none__';
     var nonSelectedSingle = ['all', ['!', ['has', 'point_count']], ['!=', ['get', 'id'], activeKey]];
-    ['unclustered-single-halo', 'unclustered-single-circle', 'unclustered-single-count', 'unclustered-point-logo'].forEach(function (lid) {
+    singlePointLayers.forEach(function (lid) {
       if (map.getLayer(lid)) map.setFilter(lid, nonSelectedSingle);
     });
     map.setFilter('point-selected-pin', ['==', ['get', 'id'], activeKey]);
@@ -320,9 +339,7 @@
       cardImg.src = proj.image || 'img/arabica/bar-etudu-960.webp';
     }
 
-    if (coordsEl) {
-      coordsEl.querySelector('[data-coords-text]').textContent = formatCoords(proj.lat, proj.lng);
-    }
+    updateCoords(proj.lat, proj.lng);
 
     cardEl.hidden = false;
     requestAnimationFrame(function () { cardEl.classList.add('is-open'); });
@@ -331,6 +348,7 @@
   function closeCard() {
     if (!cardEl) return;
     selectedId = null;
+    if (map) updateCenterCoords(true);
     updateSelectedFilter();
     cardEl.classList.remove('is-open');
     window.setTimeout(function () {
@@ -431,7 +449,7 @@
       // Not: maxBounds yerine yalnızca merkez kilidi (clampMapToRegion) kullanılır; böylece ağırlık merkezi itilmez ve Kazakistan/Ukrayna yönüne rahatça dönülüp zoom yapılabilir.
       map = new window.maplibregl.Map({
         container: canvasEl,
-        style: 'assets/data/map-style-anthracite.json?v=5',
+        style: 'assets/data/map-style-anthracite.json?v=6',
         center: startCenter,
         zoom: startZoom,
         minZoom: minZ,
@@ -552,13 +570,13 @@
       }
     });
 
-    // 4. Tekil lokasyonlar genel görünümde (zoom < 11.5) '1' rozetiyle görünür (örn. Ukrayna)
+    // Tekil lokasyonlar, kümelerin açıldığı ölçeğe kadar sayı rozetiyle görünür.
     var nonSelectedSingle = ['all', ['!', ['has', 'point_count']], ['!=', ['get', 'id'], '__none__']];
     map.addLayer({
       id: 'unclustered-single-halo',
       type: 'circle',
       source: 'projects',
-      maxzoom: 11.5,
+      maxzoom: pinZoom,
       filter: nonSelectedSingle,
       paint: {
         'circle-color': '#ffffff',
@@ -571,7 +589,7 @@
       id: 'unclustered-single-circle',
       type: 'circle',
       source: 'projects',
-      maxzoom: 11.5,
+      maxzoom: pinZoom,
       filter: nonSelectedSingle,
       paint: {
         'circle-color': '#111214',
@@ -585,7 +603,7 @@
       id: 'unclustered-single-count',
       type: 'symbol',
       source: 'projects',
-      maxzoom: 11.5,
+      maxzoom: pinZoom,
       filter: nonSelectedSingle,
       layout: {
         'text-field': '1',
@@ -599,19 +617,37 @@
       }
     });
 
-    // 5. Yakınlaşınca (zoom >= 11.5) her proje kendi tanımlı logo/ikon piniyle görünür
+    // Fotoğraf kartını açmak için logonun saydam kenarına isabet etmek gerekmez.
+    map.addLayer({
+      id: 'branch-hit-area',
+      type: 'circle',
+      source: 'projects',
+      minzoom: pinZoom,
+      filter: nonSelectedSingle,
+      paint: {
+        'circle-radius': ['interpolate', ['linear'], ['zoom'], pinZoom, 24, 16, 30],
+        'circle-opacity': 0,
+        'circle-pitch-alignment': 'viewport'
+      }
+    });
+
+    // Arabica'nın kare ve Sweet House'un yatay logolarını optik olarak dengede tut.
     map.addLayer({
       id: 'unclustered-point-logo',
       type: 'symbol',
       source: 'projects',
-      minzoom: 11.5,
+      minzoom: pinZoom,
       filter: nonSelectedSingle,
       layout: {
         'icon-image': ['get', 'iconDefault'],
         'icon-anchor': ['get', 'iconAnchor'],
         'icon-allow-overlap': true,
         'icon-ignore-placement': true,
-        'icon-size': ['interpolate', ['linear'], ['zoom'], 11.5, 0.72, 14, 0.86, 16, 1.0]
+        'icon-size': ['interpolate', ['linear'], ['zoom'],
+          pinZoom, ['match', ['get', 'iconDefault'], 'pin:arabica-sweet', 0.87, 'pin:2dsign', 0.78, 1.24],
+          14.5, ['match', ['get', 'iconDefault'], 'pin:arabica-sweet', 1.26, 'pin:2dsign', 1.08, 1.62],
+          16.5, ['match', ['get', 'iconDefault'], 'pin:arabica-sweet', 1.46, 'pin:2dsign', 1.25, 1.88]
+        ]
       }
     });
 
@@ -626,49 +662,65 @@
         'icon-anchor': ['get', 'iconAnchor'],
         'icon-allow-overlap': true,
         'icon-ignore-placement': true,
-        'icon-size': ['interpolate', ['linear'], ['zoom'], 4, 0.85, 12, 0.95, 15, 1.05]
+        'icon-size': ['interpolate', ['linear'], ['zoom'],
+          4, 0.70,
+          pinZoom, ['match', ['get', 'iconActive'], 'pin:arabica-sweet:active', 0.86, 'pin:2dsign:active', 0.80, 1.06],
+          14.5, ['match', ['get', 'iconActive'], 'pin:arabica-sweet:active', 1.20, 'pin:2dsign:active', 1.08, 1.34],
+          16.5, ['match', ['get', 'iconActive'], 'pin:arabica-sweet:active', 1.40, 'pin:2dsign:active', 1.22, 1.57]
+        ]
       }
     });
 
-    // Kümeye tıklama -> akıcı biçimde logo/ikon pinlerine yakınlaştır
-    map.on('click', 'clusters', function (e) {
-      var feats = map.queryRenderedFeatures(e.point, { layers: ['clusters'] });
-      if (!feats.length) return;
-      var cid = feats[0].properties.cluster_id;
-      map.getSource('projects').getClusterExpansionZoom(cid).then(function (zoom) {
-        map.easeTo({
-          center: feats[0].geometry.coordinates,
-          zoom: Math.min(Math.max(zoom + 0.8, 12.2), 15.5),
-          duration: reduce ? 0 : 650
+    // Birden çok pinin alanı kesişirse en yakın şubeyi aç.
+    var interactiveLayers = ['point-selected-pin', 'unclustered-point-logo', 'branch-hit-area', 'unclustered-single-circle', 'clusters'];
+    map.on('click', function (e) {
+      var hits = map.queryRenderedFeatures(e.point, { layers: interactiveLayers });
+      if (!hits.length) return;
+      if (hits[0].layer.id === 'clusters') {
+        var cluster = hits[0];
+        map.getSource('projects').getClusterExpansionZoom(cluster.properties.cluster_id).then(function (zoom) {
+          map.easeTo({
+            center: cluster.geometry.coordinates,
+            zoom: Math.min(Math.max(zoom + 0.8, pinZoom + 0.2), 15.5),
+            duration: reduce ? 0 : 650
+          });
+        }).catch(function () { });
+        return;
+      }
+      var hit = hits[0];
+      if (hit.layer.id !== 'point-selected-pin') {
+        var nearest = Infinity;
+        hits.forEach(function (candidate) {
+          if (!candidate.properties.id || candidate.layer.id === 'clusters') return;
+          var point = map.project(candidate.geometry.coordinates);
+          var distance = Math.hypot(e.point.x - point.x, e.point.y - point.y);
+          if (distance < nearest) { nearest = distance; hit = candidate; }
         });
-      }).catch(function () { });
-    });
-
-    // Tekil '1' rozetine veya proje pinine tıklama -> yakınlaş + fotoğraf pop-up kartı aç
-    function handleSingleClick(e) {
-      if (!e.features || !e.features.length) return;
-      var fid = e.features[0].properties.id;
-      var proj = allProjects.find(function (p) { return p.id === fid; });
+      }
+      var proj = allProjects.find(function (p) { return p.id === hit.properties.id; });
       if (proj) flyToProject(proj);
-    }
-
-    map.on('click', 'unclustered-single-circle', handleSingleClick);
-    map.on('click', 'unclustered-point-logo', handleSingleClick);
-    map.on('click', 'point-selected-pin', handleSingleClick);
-
-    // İmleç geri bildirimi
-    ['clusters', 'unclustered-single-circle', 'unclustered-point-logo', 'point-selected-pin'].forEach(function (lyr) {
-      map.on('mouseenter', lyr, function () { map.getCanvas().style.cursor = 'pointer'; });
-      map.on('mouseleave', lyr, function () { map.getCanvas().style.cursor = ''; });
     });
 
-    // Küre şube coğrafyası dışına taşmasın + canlı merkez koordinatı güncellensin
+    var lastHoverUpdate = -Infinity;
+    var pointerCanvas = map.getCanvas();
+    map.on('mousemove', function (e) {
+      var now = performance.now();
+      if (map.isMoving() || now - lastHoverUpdate < 45) return;
+      lastHoverUpdate = now;
+      var cursor = map.queryRenderedFeatures(e.point, { layers: interactiveLayers }).length ? 'pointer' : '';
+      if (pointerCanvas.style.cursor !== cursor) pointerCanvas.style.cursor = cursor;
+    });
+    map.on('mouseout', function () { pointerCanvas.style.cursor = ''; lastHoverUpdate = -Infinity; });
+    map.on('movestart', function () { if (stage) stage.classList.add('is-map-moving'); });
     map.on('move', function () {
       clampMapToRegion();
-      if (!coordsEl || selectedId) return;
-      var c = map.getCenter();
-      coordsEl.querySelector('[data-coords-text]').textContent = formatCoords(c.lat, c.lng);
+      updateCenterCoords(false);
     });
+    map.on('moveend', function () {
+      if (stage && !map.isMoving()) stage.classList.remove('is-map-moving');
+      updateCenterCoords(true);
+    });
+    updateCenterCoords(true);
   }
 
   // Özel mimari harita kontrolleri
